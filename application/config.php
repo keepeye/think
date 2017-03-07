@@ -24,10 +24,10 @@ return [
     'app_status'             => '',
     // 是否支持多模块
     'app_multi_module'       => true,
+    // 入口自动绑定模块
+    'auto_bind_module'       => false,
     // 注册的根命名空间
     'root_namespace'         => [],
-    // 扩展配置文件
-    'extra_config_list'      => ['database', 'validate'],
     // 扩展函数文件
     'extra_file_list'        => [THINK_PATH . 'helper' . EXT],
     // 默认输出类型
@@ -46,7 +46,9 @@ return [
     'default_filter'         => '',
     // 默认语言
     'default_lang'           => 'zh-cn',
-    // 是否启用控制器类后缀
+    // 应用类库后缀
+    'class_suffix'           => false,
+    // 控制器类后缀
     'controller_suffix'      => false,
 
     // +----------------------------------------------------------------------
@@ -88,11 +90,15 @@ return [
     'url_param_type'         => 0,
     // 是否开启路由
     'url_route_on'           => true,
+    // 路由使用完整匹配
+    'route_complete_match'   => false,
+    // 路由配置文件（支持配置多个）
+    'route_config_file'      => ['route'],
     // 是否强制使用路由
     'url_route_must'         => false,
     // 域名部署
     'url_domain_deploy'      => false,
-    // 域名根，如.thinkphp.cn
+    // 域名根，如thinkphp.cn
     'url_domain_root'        => '',
     // 是否自动转换URL中的控制器和操作名
     'url_convert'            => true,
@@ -100,6 +106,14 @@ return [
     'url_controller_layer'   => 'controller',
     // 表单请求类型伪装变量
     'var_method'             => '_method',
+    // 表单ajax伪装变量
+    'var_ajax'               => '_ajax',
+    // 表单pjax伪装变量
+    'var_pjax'               => '_pjax',
+    // 是否开启请求缓存 true自动缓存 支持设置请求缓存规则
+    'request_cache'          => false,
+    // 请求缓存有效期
+    'request_cache_expire'   => null,
 
     // +----------------------------------------------------------------------
     // | 模板设置
@@ -149,18 +163,19 @@ return [
     // +----------------------------------------------------------------------
 
     'log'                    => [
-        // 日志记录方式，支持 file socket
-        'type' => 'File',
+        // 日志记录方式，内置 file socket 支持扩展
+        'type'  => 'File',
         // 日志保存目录
-        'path' => LOG_PATH,
+        'path'  => LOG_PATH,
+        // 日志记录级别
+        'level' => [],
     ],
 
     // +----------------------------------------------------------------------
-    // | Trace设置
+    // | Trace设置 开启 app_trace 后 有效
     // +----------------------------------------------------------------------
-
     'trace'                  => [
-        //支持Html Console
+        // 内置Html Console 支持扩展
         'type' => 'Html',
     ],
 
